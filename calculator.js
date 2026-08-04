@@ -991,528 +991,400 @@ export function calculateScenarios(
 }
 /* ==========================================================
    Retail ROI Analytics v2
-   Calculation Engine - Part 3
+   Calculation Engine - Part 4
 ========================================================== */
 
 import {
-    HEALTH,
-    BENCHMARKS
-} from "./constants.js";
+    calculateRevenue,
+    calculateFixedExpenses,
+    calculateVariableExpenses,
+    calculateTotalExpenses,
+    calculateMarginAmount,
+    calculateProfit,
+    calculateExpenseRatio,
+    calculateProfitRatio,
+    calculateRentRatio,
+    calculateSalaryRatio,
+    calculateMarginEfficiency
+} from "./calculator.js";
 
 import {
-    clamp,
-    round
-} from "./utils.js";
+    calculateBreakEven,
+    calculateRequiredRevenue,
+    calculateRequiredMargin,
+    calculateDailyRevenue,
+    calculateDailyProfit,
+    calculateDailyBreakEven,
+    calculateTargetAchievement,
+    calculateRevenueAchievement,
+    calculateMarginAchievement,
+    calculatePrivateLabelGain,
+    calculateCrossSellGain,
+    calculateExpenseSaving,
+    calculateScenarios
+} from "./calculator.js";
+
+import {
+    calculateHealthScore,
+    calculateROI,
+    calculateProfitScore,
+    calculateExpenseScore,
+    calculateMarginScore,
+    calculateGrade,
+    calculateBusinessStatus,
+    buildKPIs,
+    buildDashboardMetrics,
+    buildExecutiveSummary,
+    buildRecommendations
+} from "./calculator.js";
 
 /* ==========================================================
-   Health Score
+   Master Calculation
 ========================================================== */
 
-export function calculateHealthScore({
+export function calculateAll(inputs){
 
-    profit,
+    /* -----------------------------
+       Revenue
+    ------------------------------ */
 
-    margin,
-
-    expenseRatio,
-
-    rentRatio,
-
-    salaryRatio
-
-}){
-
-    let score = 100;
-
-    /* Profit */
-
-    if(profit <= 0){
-
-        score -= 40;
-
-    }
-
-    /* Margin */
-
-    if(margin < BENCHMARKS.IDEAL_MARGIN){
-
-        score -=
-
-            (BENCHMARKS.IDEAL_MARGIN - margin) * 2;
-
-    }
-
-    /* Expense Ratio */
-
-    if(expenseRatio >
-
-        BENCHMARKS.IDEAL_EXPENSE_RATIO){
-
-        score -=
-
-            expenseRatio -
-
-            BENCHMARKS.IDEAL_EXPENSE_RATIO;
-
-    }
-
-    /* Rent */
-
-    if(rentRatio >
-
-        BENCHMARKS.MAX_RENT_RATIO){
-
-        score -=
-
-            (rentRatio -
-
-            BENCHMARKS.MAX_RENT_RATIO) * 2;
-
-    }
-
-    /* Salary */
-
-    if(salaryRatio >
-
-        BENCHMARKS.MAX_SALARY_RATIO){
-
-        score -=
-
-            (salaryRatio -
-
-            BENCHMARKS.MAX_SALARY_RATIO);
-
-    }
-
-    return clamp(
-
-        round(score),
-
-        0,
-
-        100
-
+    const revenue = calculateRevenue(
+        inputs.revenue,
+        inputs.timeframe
     );
 
-}
+    /* -----------------------------
+       Fixed Expenses
+    ------------------------------ */
 
-/* ==========================================================
-   ROI Score
-========================================================== */
+    const fixed = calculateFixedExpenses(inputs);
 
-export function calculateROI(
+    /* -----------------------------
+       Variable Expenses
+    ------------------------------ */
 
-    profit,
+    const variable = calculateVariableExpenses(inputs);
 
-    totalExpense
+    /* -----------------------------
+       Total Expense
+    ------------------------------ */
 
-){
-
-    if(totalExpense<=0){
-
-        return 0;
-
-    }
-
-    return clamp(
-
-        round(
-
-            (
-
-                profit/
-
-                totalExpense
-
-            )*100
-
-        ),
-
-        0,
-
-        100
-
+    const totalExpense = calculateTotalExpenses(
+        fixed.fixedExpense,
+        variable.variableExpense
     );
 
-}
+    /* -----------------------------
+       Margin
+    ------------------------------ */
+
+    const marginAmount =
+        calculateMarginAmount(
+            revenue,
+            inputs.margin
+        );
+
+    /* -----------------------------
+       Profit
+    ------------------------------ */
+
+    const profit =
+        calculateProfit(
+            marginAmount,
+            totalExpense
+        );
+
+    /* -----------------------------
+       Ratios
+    ------------------------------ */
+
+    const expenseRatio =
+        calculateExpenseRatio(
+            totalExpense,
+            revenue
+        );
+
+    const profitRatio =
+        calculateProfitRatio(
+            profit,
+            revenue
+        );
+
+    const rentRatio =
+        calculateRentRatio(
+            fixed.rent,
+            revenue
+        );
+
+    const salaryRatio =
+        calculateSalaryRatio(
+            fixed.salary,
+            revenue
+        );
+
+    const marginEfficiency =
+        calculateMarginEfficiency(
+            profit,
+            marginAmount
+        );
+
+    /* -----------------------------
+       Targets
+    ------------------------------ */
+
+    const breakEven =
+        calculateBreakEven(
+            totalExpense,
+            inputs.margin
+        );
+
+    const requiredRevenue =
+        calculateRequiredRevenue(
+            inputs.target,
+            totalExpense,
+            inputs.margin
+        );
+
+    const requiredMargin =
+        calculateRequiredMargin(
+            revenue,
+            inputs.target,
+            totalExpense
+        );
+
+    /* -----------------------------
+       Daily Planner
+    ------------------------------ */
+
+    const dailyRevenue =
+        calculateDailyRevenue(
+            revenue,
+            inputs.timeframe
+        );
+
+    const dailyProfit =
+        calculateDailyProfit(
+            profit,
+            inputs.timeframe
+        );
+
+    const dailyBreakEven =
+        calculateDailyBreakEven(
+            breakEven,
+            inputs.timeframe
+        );
+
+    /* -----------------------------
+       Opportunities
+    ------------------------------ */
 
-/* ==========================================================
-   Profit Score
-========================================================== */
+    const privateLabelGain =
+        calculatePrivateLabelGain(
+            revenue
+        );
 
-export function calculateProfitScore(
+    const crossSellValue =
+        calculateCrossSellGain(
+            revenue
+        );
 
-    profit,
+    const savingPotential =
+        calculateExpenseSaving(
+            totalExpense
+        );
 
-    revenue
+    /* -----------------------------
+       Scenario Engine
+    ------------------------------ */
 
-){
+    const scenarios =
+        calculateScenarios(
+            revenue,
+            inputs.margin,
+            totalExpense,
+            profit
+        );
 
-    if(revenue<=0){
+    /* -----------------------------
+       Scores
+    ------------------------------ */
 
-        return 0;
+    const healthScore =
+        calculateHealthScore({
 
-    }
+            profit,
 
-    return clamp(
+            margin: inputs.margin,
 
-        round(
+            expenseRatio,
 
-            (
+            rentRatio,
 
-                profit/
+            salaryRatio
 
-                revenue
+        });
 
-            )*1000
+    const roiScore =
+        calculateROI(
+            profit,
+            totalExpense
+        );
 
-        ),
+    const profitScore =
+        calculateProfitScore(
+            profit,
+            revenue
+        );
 
-        0,
+    const expenseScore =
+        calculateExpenseScore(
+            expenseRatio
+        );
 
-        100
+    const marginScore =
+        calculateMarginScore(
+            inputs.margin
+        );
 
-    );
+    const grade =
+        calculateGrade(
+            healthScore
+        );
 
-}
+    const status =
+        calculateBusinessStatus(
+            healthScore
+        );
 
-/* ==========================================================
-   Expense Score
-========================================================== */
+    /* -----------------------------
+       Dashboard Objects
+    ------------------------------ */
 
-export function calculateExpenseScore(
+    const dashboard = {
 
-    expenseRatio
+        revenue,
 
-){
+        margin: inputs.margin,
 
-    return clamp(
+        marginAmount,
 
-        round(
+        profit,
 
-            100-expenseRatio
+        fixedExpense:
+            fixed.fixedExpense,
 
-        ),
+        variableExpense:
+            variable.variableExpense,
 
-        0,
+        totalExpense,
 
-        100
+        rent: fixed.rent,
 
-    );
+        salary: fixed.salary,
 
-}
+        internet: fixed.internet,
 
-/* ==========================================================
-   Margin Score
-========================================================== */
+        electricity:
+            variable.electricity,
 
-export function calculateMarginScore(
+        stationary:
+            variable.stationary,
 
-    margin
+        marketing:
+            variable.marketing,
 
-){
+        misc:
+            variable.misc,
 
-    return clamp(
+        expenseRatio,
 
-        round(
+        profitRatio,
 
-            margin*5
+        rentRatio,
 
-        ),
+        salaryRatio,
 
-        0,
+        marginEfficiency,
 
-        100
+        breakEven,
 
-    );
+        requiredRevenue,
 
-}
+        requiredMargin,
 
-/* ==========================================================
-   Business Grade
-========================================================== */
+        dailyRevenue,
 
-export function calculateGrade(
+        dailyProfit,
 
-    healthScore
+        dailyBreakEven,
 
-){
+        target:
+            inputs.target,
 
-    if(
+        targetAchievement:
+            calculateTargetAchievement(
+                profit,
+                inputs.target
+            ),
 
-        healthScore>=90
+        revenueAchievement:
+            calculateRevenueAchievement(
+                revenue,
+                requiredRevenue
+            ),
 
-    ) return "A+";
+        marginAchievement:
+            calculateMarginAchievement(
+                inputs.margin,
+                requiredMargin
+            ),
 
-    if(
+        privateLabelGain,
 
-        healthScore>=80
+        crossSellValue,
 
-    ) return "A";
+        savingPotential,
 
-    if(
+        scenarios,
 
-        healthScore>=70
+        healthScore,
 
-    ) return "B+";
+        roiScore,
 
-    if(
+        profitScore,
 
-        healthScore>=60
+        expenseScore,
 
-    ) return "B";
+        marginScore,
 
-    if(
+        grade,
 
-        healthScore>=50
+        status
 
-    ) return "C";
+    };
 
-    return "D";
+    return {
 
-}
+        ...dashboard,
 
-/* ==========================================================
-   Business Status
-========================================================== */
+        kpis:
+            buildKPIs(dashboard),
 
-export function calculateBusinessStatus(
+        metrics:
+            buildDashboardMetrics(
+                dashboard
+            ),
 
-    healthScore
+        executive:
+            buildExecutiveSummary(
+                dashboard
+            ),
 
-){
-
-    if(
-
-        healthScore>=
-
-        HEALTH.EXCELLENT
-
-    ){
-
-        return "Excellent";
-
-    }
-
-    if(
-
-        healthScore>=
-
-        HEALTH.VERY_GOOD
-
-    ){
-
-        return "Very Good";
-
-    }
-
-    if(
-
-        healthScore>=
-
-        HEALTH.GOOD
-
-    ){
-
-        return "Good";
-
-    }
-
-    if(
-
-        healthScore>=
-
-        HEALTH.AVERAGE
-
-    ){
-
-        return "Average";
-
-    }
-
-    if(
-
-        healthScore>=
-
-        HEALTH.BELOW_AVERAGE
-
-    ){
-
-        return "Needs Improvement";
-
-    }
-
-    return "Critical";
-
-}
-
-/* ==========================================================
-   KPI Summary
-========================================================== */
-
-export function buildKPIs(data){
-
-    return{
-
-        revenue:data.revenue,
-
-        expenses:data.totalExpense,
-
-        margin:data.margin,
-
-        profit:data.profit,
-
-        health:data.healthScore,
-
-        roi:data.roiScore
+        recommendations:
+            buildRecommendations(
+                dashboard
+            )
 
     };
 
 }
-
-/* ==========================================================
-   Dashboard Metrics
-========================================================== */
-
-export function buildDashboardMetrics(data){
-
-    return{
-
-        revenue:data.revenue,
-
-        marginAmount:data.marginAmount,
-
-        totalExpense:data.totalExpense,
-
-        profit:data.profit,
-
-        expenseRatio:data.expenseRatio,
-
-        profitRatio:data.profitRatio,
-
-        rentRatio:data.rentRatio,
-
-        salaryRatio:data.salaryRatio,
-
-        healthScore:data.healthScore,
-
-        roiScore:data.roiScore,
-
-        grade:data.grade
-
-    };
-
-}
-
-/* ==========================================================
-   Executive Summary
-========================================================== */
-
-export function buildExecutiveSummary(data){
-
-    return{
-
-        revenue:data.revenue,
-
-        profit:data.profit,
-
-        health:data.healthScore,
-
-        grade:data.grade,
-
-        status:data.status,
-
-        expenseRatio:data.expenseRatio,
-
-        margin:data.margin
-
-    };
-
-}
-
-/* ==========================================================
-   Recommendation Priority
-========================================================== */
-
-export function buildRecommendations(data){
-
-    const list=[];
-
-    if(data.margin<20){
-
-        list.push(
-
-            "Increase Private Label contribution."
-
-        );
-
-    }
-
-    if(data.expenseRatio>
-
-        BENCHMARKS.MAX_EXPENSE_RATIO){
-
-        list.push(
-
-            "Reduce operating expenses."
-
-        );
-
-    }
-
-    if(data.profit<=0){
-
-        list.push(
-
-            "Improve gross margin immediately."
-
-        );
-
-    }
-
-    if(data.healthScore>80){
-
-        list.push(
-
-            "Continue current strategy."
-
-        );
-
-    }
-
-    if(list.length===0){
-
-        list.push(
-
-            "Business performance is stable."
-
-        );
-
-    }
-
-    return list;
-
-}
-Retail ROI Analytics v2
-
-index.html
-
-css/
-├── theme.css
-├── layout.css
-├── components.css
-├── dashboard.css
-├── animations.css
-└── responsive.css
-
-js/
-├── constants.js
-├── state.js
-├── utils.js
-├── calculator.js
-├── charts.js
-├── storage.js
-├── insights.js
-├── ui.js
-├── events.js
-└── app.js
