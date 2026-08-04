@@ -1,0 +1,2934 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Retail ROI Analytics v2</title>
+
+    <meta
+        name="description"
+        content="Professional Retail ROI Analytics Dashboard">
+
+    <meta
+        name="theme-color"
+        content="#008753">
+
+    <!-- Favicon -->
+    <link
+        rel="icon"
+        href="assets/favicon.svg"
+        type="image/svg+xml">
+
+    <!-- Google Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body class="app">
+
+<!-- ====================================================== -->
+<!-- App Container -->
+<!-- ====================================================== -->
+
+<div id="app">
+
+    <!-- =============================================== -->
+    <!-- HEADER -->
+    <!-- =============================================== -->
+
+    <header class="top-header">
+
+        <div class="header-left">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+
+                    <i data-lucide="line-chart"></i>
+
+                </div>
+
+                <div>
+
+                    <h1>
+                        Retail ROI Analytics
+                    </h1>
+
+                    <p>
+                        Smart Retail Financial Dashboard
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="header-right">
+
+            <!-- Timeframe -->
+
+            <div class="segment-control">
+
+                <button
+                    id="monthlyBtn"
+                    class="segment-btn active">
+
+                    Monthly
+
+                </button>
+
+                <button
+                    id="annualBtn"
+                    class="segment-btn">
+
+                    Annual
+
+                </button>
+
+            </div>
+
+            <!-- Theme -->
+
+            <button
+                id="themeToggle"
+                class="icon-button">
+
+                <i data-lucide="moon"></i>
+
+            </button>
+
+            <!-- Reset -->
+
+            <button
+                id="resetButton"
+                class="secondary-button">
+
+                <i data-lucide="rotate-ccw"></i>
+
+                <span>
+
+                    Reset
+
+                </span>
+
+            </button>
+
+            <!-- Export PDF -->
+
+            <button
+                id="exportPdfButton"
+                class="secondary-button">
+
+                <i data-lucide="file-text"></i>
+
+                <span>
+
+                    PDF
+
+                </span>
+
+            </button>
+
+            <!-- Export Excel -->
+
+            <button
+                id="exportExcelButton"
+                class="primary-button">
+
+                <i data-lucide="download"></i>
+
+                <span>
+
+                    Excel
+
+                </span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- =============================================== -->
+    <!-- Dashboard -->
+    <!-- =============================================== -->
+
+    <main class="dashboard">
+
+        <!-- ======================================= -->
+        <!-- KPI SECTION -->
+        <!-- ======================================= -->
+
+        <section
+            class="kpi-grid">
+
+            <!-- Revenue -->
+
+            <article
+                class="kpi-card revenue">
+
+                <div class="kpi-top">
+
+                    <div>
+
+                        <span class="kpi-label">
+
+                            Revenue
+
+                        </span>
+
+                        <h2
+                            id="kpiRevenue">
+
+                            ₹0
+
+                        </h2>
+
+                    </div>
+
+                    <div class="kpi-icon">
+
+                        <i data-lucide="indian-rupee"></i>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="revenueTrend"
+                    class="trend neutral">
+
+                    --
+
+                </div>
+
+            </article>
+
+            <!-- Expenses -->
+
+            <article
+                class="kpi-card expense">
+
+                <div class="kpi-top">
+
+                    <div>
+
+                        <span class="kpi-label">
+
+                            Expenses
+
+                        </span>
+
+                        <h2
+                            id="kpiExpense">
+
+                            ₹0
+
+                        </h2>
+
+                    </div>
+
+                    <div class="kpi-icon">
+
+                        <i data-lucide="wallet"></i>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="expenseTrend"
+                    class="trend">
+
+                    --
+
+                </div>
+
+            </article>
+
+            <!-- Margin -->
+
+            <article
+                class="kpi-card margin">
+
+                <div class="kpi-top">
+
+                    <div>
+
+                        <span class="kpi-label">
+
+                            Margin
+
+                        </span>
+
+                        <h2
+                            id="kpiMargin">
+
+                            0%
+
+                        </h2>
+
+                    </div>
+
+                    <div class="kpi-icon">
+
+                        <i data-lucide="percent"></i>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="marginTrend"
+                    class="trend">
+
+                    --
+
+                </div>
+
+            </article>
+
+            <!-- Profit -->
+
+            <article
+                class="kpi-card profit">
+
+                <div class="kpi-top">
+
+                    <div>
+
+                        <span class="kpi-label">
+
+                            Net Profit
+
+                        </span>
+
+                        <h2
+                            id="kpiProfit">
+
+                            ₹0
+
+                        </h2>
+
+                    </div>
+
+                    <div class="kpi-icon">
+
+                        <i data-lucide="trending-up"></i>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="profitStatus"
+                    class="trend">
+
+                    Neutral
+
+                </div>
+
+            </article>
+
+            <!-- Health -->
+
+            <article
+                class="kpi-card health">
+
+                <div class="kpi-top">
+
+                    <div>
+
+                        <span class="kpi-label">
+
+                            Financial Health
+
+                        </span>
+
+                        <h2
+                            id="healthScore">
+
+                            0
+
+                        </h2>
+
+                    </div>
+
+                    <div class="kpi-icon">
+
+                        <i data-lucide="heart-pulse"></i>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="healthRemark"
+                    class="trend">
+
+                    Awaiting Data
+
+                </div>
+
+            </article>
+
+            <!-- Target -->
+
+            <article
+                class="kpi-card target">
+
+                <div class="kpi-top">
+
+                    <div>
+
+                        <span class="kpi-label">
+
+                            Target Goal
+
+                        </span>
+
+                        <h2
+                            id="targetValue">
+
+                            ₹0
+
+                        </h2>
+
+                    </div>
+
+                    <div class="kpi-icon">
+
+                        <i data-lucide="target"></i>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="targetProgress"
+                    class="trend">
+
+                    0%
+
+                </div>
+
+            </article>
+
+        </section>
+
+        <!-- =================================================== -->
+        <!-- Remaining dashboard starts in Part 2 -->
+        <!-- =================================================== -->
+              <!-- =================================================== -->
+        <!-- MAIN CONTENT GRID -->
+        <!-- =================================================== -->
+
+        <section class="content-grid">
+
+            <!-- ========================================== -->
+            <!-- LEFT COLUMN -->
+            <!-- Expenses -->
+            <!-- ========================================== -->
+
+            <aside class="left-panel">
+
+                <!-- Fixed Expenses -->
+
+                <section class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+
+                            <i data-lucide="building-2"></i>
+
+                            <h3>Fixed Expenses</h3>
+
+                        </div>
+
+                        <span class="card-badge">
+
+                            Monthly
+
+                        </span>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <!-- Property Rent -->
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Property Rent
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span>₹</span>
+
+                                <input
+                                    id="rentInput"
+                                    type="number"
+                                    placeholder="0">
+
+                            </div>
+
+                        </div>
+
+                        <!-- GST Toggle -->
+
+                        <div class="toggle-row">
+
+                            <span>GST Included</span>
+
+                            <div class="segment-control small">
+
+                                <button
+                                    id="rentWithGST"
+                                    class="segment-btn active">
+
+                                    Yes
+
+                                </button>
+
+                                <button
+                                    id="rentWithoutGST"
+                                    class="segment-btn">
+
+                                    +18%
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Salary -->
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Staff Salary
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span>₹</span>
+
+                                <input
+                                    id="salaryInput"
+                                    type="number"
+                                    placeholder="0">
+
+                            </div>
+
+                        </div>
+
+                        <!-- Salary Mode -->
+
+                        <div class="toggle-row">
+
+                            <span>Salary Mode</span>
+
+                            <div class="segment-control small">
+
+                                <button
+                                    id="salaryTotalBtn"
+                                    class="segment-btn active">
+
+                                    Total
+
+                                </button>
+
+                                <button
+                                    id="salaryDetailedBtn"
+                                    class="segment-btn">
+
+                                    Detailed
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <!-- Dynamic Employee List -->
+
+                        <div
+                            id="employeeContainer"
+                            class="employee-list">
+
+                        </div>
+
+                        <button
+                            id="addEmployeeButton"
+                            class="outline-button">
+
+                            <i data-lucide="plus"></i>
+
+                            Add Employee
+
+                        </button>
+
+                        <!-- Internet -->
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Internet
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span>₹</span>
+
+                                <input
+                                    id="internetInput"
+                                    type="number"
+                                    placeholder="0">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer">
+
+                        <span>
+
+                            Fixed Cost
+
+                        </span>
+
+                        <strong id="fixedExpenseTotal">
+
+                            ₹0
+
+                        </strong>
+
+                    </div>
+
+                </section>
+
+                <!-- Variable Expenses -->
+
+                <section class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+
+                            <i data-lucide="zap"></i>
+
+                            <h3>
+
+                                Variable Expenses
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <!-- Electricity -->
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Electricity
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span>₹</span>
+
+                                <input
+                                    id="electricityInput"
+                                    type="number">
+
+                            </div>
+
+                        </div>
+
+                        <!-- Stationary -->
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Stationary
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span>₹</span>
+
+                                <input
+                                    id="stationaryInput"
+                                    type="number">
+
+                            </div>
+
+                        </div>
+
+                        <!-- Marketing -->
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Marketing
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span>₹</span>
+
+                                <input
+                                    id="marketingInput"
+                                    type="number">
+
+                            </div>
+
+                        </div>
+
+                        <!-- Misc -->
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Miscellaneous
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span>₹</span>
+
+                                <input
+                                    id="miscInput"
+                                    type="number">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer">
+
+                        <span>
+
+                            Variable Cost
+
+                        </span>
+
+                        <strong id="variableExpenseTotal">
+
+                            ₹0
+
+                        </strong>
+
+                    </div>
+
+                </section>
+
+            </aside>
+
+            <!-- ========================================== -->
+            <!-- CENTER PANEL -->
+            <!-- Revenue & Financial Planning -->
+            <!-- ========================================== -->
+
+            <section class="center-panel">
+
+                <!-- Revenue -->
+
+                <section class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+
+                            <i data-lucide="badge-indian-rupee"></i>
+
+                            <h3>
+
+                                Revenue & Margin
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-body two-column">
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Revenue
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span>₹</span>
+
+                                <input
+                                    id="revenueInput"
+                                    type="number">
+
+                            </div>
+
+                        </div>
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Margin %
+
+                            </label>
+
+                            <div class="input-wrapper percent">
+
+                                <input
+                                    id="marginInput"
+                                    type="number">
+
+                                <span>%</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- Target -->
+
+                <section class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+
+                            <i data-lucide="target"></i>
+
+                            <h3>
+
+                                Target Planner
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="input-group">
+
+                            <label>
+
+                                Desired Profit
+
+                            </label>
+
+                            <div class="input-wrapper">
+
+                                <span>₹</span>
+
+                                <input
+                                    id="targetInput"
+                                    type="number">
+
+                            </div>
+
+                        </div>
+
+                        <div class="planner-grid">
+
+                            <div class="planner-item">
+
+                                <span>
+
+                                    Required Revenue
+
+                                </span>
+
+                                <strong id="requiredRevenue">
+
+                                    ₹0
+
+                                </strong>
+
+                            </div>
+
+                            <div class="planner-item">
+
+                                <span>
+
+                                    Required Margin
+
+                                </span>
+
+                                <strong id="requiredMargin">
+
+                                    0%
+
+                                </strong>
+
+                            </div>
+
+                            <div class="planner-item">
+
+                                <span>
+
+                                    Daily Sales
+
+                                </span>
+
+                                <strong id="dailySales">
+
+                                    ₹0
+
+                                </strong>
+
+                            </div>
+
+                            <div class="planner-item">
+
+                                <span>
+
+                                    Break-even
+
+                                </span>
+
+                                <strong id="breakEven">
+
+                                    ₹0
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+                        <!-- ========================================== -->
+            <!-- RIGHT PANEL -->
+            <!-- Executive Dashboard -->
+            <!-- ========================================== -->
+
+            <aside class="right-panel">
+
+                <!-- ====================================== -->
+                <!-- Financial Summary -->
+                <!-- ====================================== -->
+
+                <section class="dashboard-card summary-card">
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+
+                            <i data-lucide="bar-chart-3"></i>
+
+                            <h3>
+
+                                Financial Summary
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="summary-list">
+
+                        <div class="summary-item">
+
+                            <span>
+
+                                Gross Revenue
+
+                            </span>
+
+                            <strong id="summaryRevenue">
+
+                                ₹0
+
+                            </strong>
+
+                        </div>
+
+                        <div class="summary-item">
+
+                            <span>
+
+                                Margin Amount
+
+                            </span>
+
+                            <strong id="summaryMargin">
+
+                                ₹0
+
+                            </strong>
+
+                        </div>
+
+                        <div class="summary-item">
+
+                            <span>
+
+                                Fixed Expenses
+
+                            </span>
+
+                            <strong id="summaryFixed">
+
+                                ₹0
+
+                            </strong>
+
+                        </div>
+
+                        <div class="summary-item">
+
+                            <span>
+
+                                Variable Expenses
+
+                            </span>
+
+                            <strong id="summaryVariable">
+
+                                ₹0
+
+                            </strong>
+
+                        </div>
+
+                        <div class="summary-item">
+
+                            <span>
+
+                                Total Expenses
+
+                            </span>
+
+                            <strong id="summaryExpenses">
+
+                                ₹0
+
+                            </strong>
+
+                        </div>
+
+                        <div class="summary-divider"></div>
+
+                        <div class="summary-item highlight">
+
+                            <span>
+
+                                Net Profit
+
+                            </span>
+
+                            <strong id="summaryProfit">
+
+                                ₹0
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ====================================== -->
+                <!-- Financial Health -->
+                <!-- ====================================== -->
+
+                <section class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+
+                            <i data-lucide="activity"></i>
+
+                            <h3>
+
+                                Financial Health
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="health-score">
+
+                        <div class="health-circle">
+
+                            <svg width="170" height="170">
+
+                                <circle
+                                    cx="85"
+                                    cy="85"
+                                    r="70"
+                                    class="health-bg">
+
+                                </circle>
+
+                                <circle
+                                    id="healthProgress"
+                                    cx="85"
+                                    cy="85"
+                                    r="70"
+                                    class="health-progress">
+
+                                </circle>
+
+                            </svg>
+
+                            <div class="health-value">
+
+                                <h2 id="healthPercent">
+
+                                    0
+
+                                </h2>
+
+                                <span>
+
+                                    /100
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <h4 id="healthTitle">
+
+                            Awaiting Data
+
+                        </h4>
+
+                        <p id="healthDescription">
+
+                            Enter revenue and expenses
+                            to calculate your financial health.
+
+                        </p>
+
+                    </div>
+
+                </section>
+
+                <!-- ====================================== -->
+                <!-- Performance Metrics -->
+                <!-- ====================================== -->
+
+                <section class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+
+                            <i data-lucide="gauge"></i>
+
+                            <h3>
+
+                                Performance Metrics
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="metric-grid">
+
+                        <div class="metric-card">
+
+                            <span>
+
+                                Expense Ratio
+
+                            </span>
+
+                            <strong id="expenseRatio">
+
+                                0%
+
+                            </strong>
+
+                        </div>
+
+                        <div class="metric-card">
+
+                            <span>
+
+                                Profit Ratio
+
+                            </span>
+
+                            <strong id="profitRatio">
+
+                                0%
+
+                            </strong>
+
+                        </div>
+
+                        <div class="metric-card">
+
+                            <span>
+
+                                Margin Efficiency
+
+                            </span>
+
+                            <strong id="marginEfficiency">
+
+                                0%
+
+                            </strong>
+
+                        </div>
+
+                        <div class="metric-card">
+
+                            <span>
+
+                                ROI Score
+
+                            </span>
+
+                            <strong id="roiScore">
+
+                                0
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <!-- ====================================== -->
+                <!-- Live Progress -->
+                <!-- ====================================== -->
+
+                <section class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div class="card-title">
+
+                            <i data-lucide="trending-up"></i>
+
+                            <h3>
+
+                                Live Progress
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                    <div class="progress-group">
+
+                        <div class="progress-item">
+
+                            <div class="progress-header">
+
+                                <span>
+
+                                    Revenue Target
+
+                                </span>
+
+                                <strong id="revenueProgressText">
+
+                                    0%
+
+                                </strong>
+
+                            </div>
+
+                            <div class="progress-bar">
+
+                                <div
+                                    id="revenueProgress"
+                                    class="progress-fill green">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="progress-item">
+
+                            <div class="progress-header">
+
+                                <span>
+
+                                    Margin Goal
+
+                                </span>
+
+                                <strong id="marginProgressText">
+
+                                    0%
+
+                                </strong>
+
+                            </div>
+
+                            <div class="progress-bar">
+
+                                <div
+                                    id="marginProgress"
+                                    class="progress-fill blue">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="progress-item">
+
+                            <div class="progress-header">
+
+                                <span>
+
+                                    Expense Control
+
+                                </span>
+
+                                <strong id="expenseProgressText">
+
+                                    0%
+
+                                </strong>
+
+                            </div>
+
+                            <div class="progress-bar">
+
+                                <div
+                                    id="expenseProgress"
+                                    class="progress-fill orange">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </aside>
+
+        </section>
+
+        <!-- ================================================= -->
+        <!-- End Main Content Grid -->
+        <!-- ================================================= -->
+              <!-- ================================================= -->
+        <!-- ANALYTICS DASHBOARD -->
+        <!-- ================================================= -->
+
+        <section class="analytics-section">
+
+            <!-- ========================================== -->
+            <!-- Revenue vs Expenses -->
+            <!-- ========================================== -->
+
+            <section class="dashboard-card chart-card large">
+
+                <div class="card-header">
+
+                    <div class="card-title">
+
+                        <i data-lucide="bar-chart-4"></i>
+
+                        <h3>
+                            Revenue vs Expenses
+                        </h3>
+
+                    </div>
+
+                    <div class="card-actions">
+
+                        <button class="chip active">
+                            Current
+                        </button>
+
+                        <button class="chip">
+                            Projection
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="chart-wrapper">
+
+                    <canvas id="revenueExpenseChart"></canvas>
+
+                </div>
+
+            </section>
+
+            <!-- ========================================== -->
+            <!-- Expense Distribution -->
+            <!-- ========================================== -->
+
+            <section class="dashboard-card chart-card">
+
+                <div class="card-header">
+
+                    <div class="card-title">
+
+                        <i data-lucide="pie-chart"></i>
+
+                        <h3>
+
+                            Expense Distribution
+
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <div class="chart-wrapper donut">
+
+                    <canvas id="expenseChart"></canvas>
+
+                </div>
+
+            </section>
+
+        </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- SCENARIO ANALYSIS -->
+        <!-- ================================================= -->
+
+        <section class="scenario-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+
+                        Growth Scenarios
+
+                    </h2>
+
+                    <p>
+
+                        Compare different business possibilities instantly
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="scenario-grid">
+
+                <!-- Current -->
+
+                <article class="scenario-card current">
+
+                    <div class="scenario-icon">
+
+                        <i data-lucide="activity"></i>
+
+                    </div>
+
+                    <span>
+
+                        Current Profit
+
+                    </span>
+
+                    <h2 id="currentScenarioProfit">
+
+                        ₹0
+
+                    </h2>
+
+                    <small>
+
+                        Existing Performance
+
+                    </small>
+
+                </article>
+
+                <!-- Margin -->
+
+                <article class="scenario-card">
+
+                    <div class="scenario-icon blue">
+
+                        <i data-lucide="percent"></i>
+
+                    </div>
+
+                    <span>
+
+                        20% Margin
+
+                    </span>
+
+                    <h2 id="marginScenarioProfit">
+
+                        ₹0
+
+                    </h2>
+
+                    <small>
+
+                        Same Revenue
+
+                    </small>
+
+                </article>
+
+                <!-- Revenue -->
+
+                <article class="scenario-card">
+
+                    <div class="scenario-icon green">
+
+                        <i data-lucide="trending-up"></i>
+
+                    </div>
+
+                    <span>
+
+                        +₹50,000 Revenue
+
+                    </span>
+
+                    <h2 id="revenueScenarioProfit">
+
+                        ₹0
+
+                    </h2>
+
+                    <small>
+
+                        Existing Margin
+
+                    </small>
+
+                </article>
+
+                <!-- Best -->
+
+                <article class="scenario-card featured">
+
+                    <div class="best-badge">
+
+                        BEST CASE
+
+                    </div>
+
+                    <div class="scenario-icon amber">
+
+                        <i data-lucide="rocket"></i>
+
+                    </div>
+
+                    <span>
+
+                        Combined Growth
+
+                    </span>
+
+                    <h2 id="bestScenarioProfit">
+
+                        ₹0
+
+                    </h2>
+
+                    <small>
+
+                        Margin + Revenue
+
+                    </small>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- DAILY BUSINESS TARGETS -->
+        <!-- ================================================= -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <i data-lucide="calendar-days"></i>
+
+                    <h3>
+
+                        Daily Business Targets
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <div class="daily-target-grid">
+
+                <div class="daily-card">
+
+                    <span>
+
+                        Daily Revenue
+
+                    </span>
+
+                    <strong id="dailyRevenueTarget">
+
+                        ₹0
+
+                    </strong>
+
+                </div>
+
+                <div class="daily-card">
+
+                    <span>
+
+                        Daily Profit
+
+                    </span>
+
+                    <strong id="dailyProfitTarget">
+
+                        ₹0
+
+                    </strong>
+
+                </div>
+
+                <div class="daily-card">
+
+                    <span>
+
+                        Daily Margin
+
+                    </span>
+
+                    <strong id="dailyMarginTarget">
+
+                        0%
+
+                    </strong>
+
+                </div>
+
+                <div class="daily-card">
+
+                    <span>
+
+                        Break-even / Day
+
+                    </span>
+
+                    <strong id="dailyBreakEven">
+
+                        ₹0
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- BUSINESS OPPORTUNITIES -->
+        <!-- ================================================= -->
+
+        <section class="opportunity-grid">
+
+            <!-- Private Label -->
+
+            <article class="dashboard-card opportunity success">
+
+                <div class="opportunity-header">
+
+                    <i data-lucide="package-check"></i>
+
+                    <h3>
+
+                        Private Label Opportunity
+
+                    </h3>
+
+                </div>
+
+                <h2 id="privateLabelGain">
+
+                    ₹0
+
+                </h2>
+
+                <p>
+
+                    Estimated additional monthly profit by improving
+                    MHS / Private Label contribution.
+
+                </p>
+
+            </article>
+
+            <!-- Cross Sell -->
+
+            <article class="dashboard-card opportunity">
+
+                <div class="opportunity-header">
+
+                    <i data-lucide="shopping-cart"></i>
+
+                    <h3>
+
+                        Cross Sell Potential
+
+                    </h3>
+
+                </div>
+
+                <h2 id="crossSellValue">
+
+                    ₹0
+
+                </h2>
+
+                <p>
+
+                    Additional revenue achievable through
+                    add-on selling and basket improvement.
+
+                </p>
+
+            </article>
+
+            <!-- Cost Saving -->
+
+            <article class="dashboard-card opportunity warning">
+
+                <div class="opportunity-header">
+
+                    <i data-lucide="badge-indian-rupee"></i>
+
+                    <h3>
+
+                        Cost Saving
+
+                    </h3>
+
+                </div>
+
+                <h2 id="savingPotential">
+
+                    ₹0
+
+                </h2>
+
+                <p>
+
+                    Possible savings through expense optimisation.
+
+                </p>
+
+            </article>
+
+        </section>
+                <!-- ================================================= -->
+        <!-- AI BUSINESS ADVISOR -->
+        <!-- ================================================= -->
+
+        <section class="advisor-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+
+                        AI Business Advisor
+
+                    </h2>
+
+                    <p>
+
+                        Personalized recommendations generated from your financial data
+
+                    </p>
+
+                </div>
+
+                <button
+                    id="refreshInsights"
+                    class="secondary-button">
+
+                    <i data-lucide="sparkles"></i>
+
+                    Refresh Insights
+
+                </button>
+
+            </div>
+
+            <div class="advisor-grid">
+
+                <!-- ====================================== -->
+                <!-- Financial Health -->
+                <!-- ====================================== -->
+
+                <article class="advisor-card success">
+
+                    <div class="advisor-header">
+
+                        <div class="advisor-icon">
+
+                            <i data-lucide="heart-pulse"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+
+                                Financial Health
+
+                            </h3>
+
+                            <span id="healthStatus">
+
+                                Awaiting Data
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <ul id="healthInsights"
+                        class="advisor-list">
+
+                    </ul>
+
+                </article>
+
+                <!-- ====================================== -->
+                <!-- Risk Analysis -->
+                <!-- ====================================== -->
+
+                <article class="advisor-card danger">
+
+                    <div class="advisor-header">
+
+                        <div class="advisor-icon">
+
+                            <i data-lucide="shield-alert"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+
+                                Risk Analysis
+
+                            </h3>
+
+                            <span>
+
+                                Business Risks
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <ul id="riskList"
+                        class="advisor-list">
+
+                    </ul>
+
+                </article>
+
+                <!-- ====================================== -->
+                <!-- Growth -->
+                <!-- ====================================== -->
+
+                <article class="advisor-card primary">
+
+                    <div class="advisor-header">
+
+                        <div class="advisor-icon">
+
+                            <i data-lucide="rocket"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+
+                                Growth Opportunities
+
+                            </h3>
+
+                            <span>
+
+                                Suggested Improvements
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <ul id="growthList"
+                        class="advisor-list">
+
+                    </ul>
+
+                </article>
+
+                <!-- ====================================== -->
+                <!-- Cost Optimization -->
+                <!-- ====================================== -->
+
+                <article class="advisor-card warning">
+
+                    <div class="advisor-header">
+
+                        <div class="advisor-icon">
+
+                            <i data-lucide="wallet-minimal"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h3>
+
+                                Cost Optimization
+
+                            </h3>
+
+                            <span>
+
+                                Saving Suggestions
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <ul id="savingList"
+                        class="advisor-list">
+
+                    </ul>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- EXECUTIVE SCOREBOARD -->
+        <!-- ================================================= -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <i data-lucide="award"></i>
+
+                    <h3>
+
+                        Executive Scoreboard
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <div class="scoreboard-grid">
+
+                <div class="score-card">
+
+                    <span>
+
+                        Profitability
+
+                    </span>
+
+                    <div class="score">
+
+                        <strong id="profitScore">
+
+                            0
+
+                        </strong>
+
+                        <small>/100</small>
+
+                    </div>
+
+                </div>
+
+                <div class="score-card">
+
+                    <span>
+
+                        Expense Control
+
+                    </span>
+
+                    <div class="score">
+
+                        <strong id="expenseScore">
+
+                            0
+
+                        </strong>
+
+                        <small>/100</small>
+
+                    </div>
+
+                </div>
+
+                <div class="score-card">
+
+                    <span>
+
+                        Margin Quality
+
+                    </span>
+
+                    <div class="score">
+
+                        <strong id="marginScore">
+
+                            0
+
+                        </strong>
+
+                        <small>/100</small>
+
+                    </div>
+
+                </div>
+
+                <div class="score-card">
+
+                    <span>
+
+                        Overall Rating
+
+                    </span>
+
+                    <div class="score">
+
+                        <strong id="overallScore">
+
+                            A+
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- ACTION PLAN -->
+        <!-- ================================================= -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <i data-lucide="list-checks"></i>
+
+                    <h3>
+
+                        Recommended Action Plan
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot success"></div>
+
+                    <div>
+
+                        <h4>
+
+                            Immediate Priority
+
+                        </h4>
+
+                        <p id="priorityOne">
+
+                            --
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot primary"></div>
+
+                    <div>
+
+                        <h4>
+
+                            This Week
+
+                        </h4>
+
+                        <p id="priorityTwo">
+
+                            --
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="timeline-dot warning"></div>
+
+                    <div>
+
+                        <h4>
+
+                            This Month
+
+                        </h4>
+
+                        <p id="priorityThree">
+
+                            --
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- PERFORMANCE TIMELINE -->
+        <!-- ================================================= -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <i data-lucide="history"></i>
+
+                    <h3>
+
+                        Performance Timeline
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <div class="chart-wrapper">
+
+                <canvas id="performanceTimelineChart"></canvas>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- EXECUTIVE SUMMARY -->
+        <!-- ================================================= -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div class="card-title">
+
+                    <i data-lucide="clipboard-list"></i>
+
+                    <h3>
+
+                        Executive Summary
+
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <div
+                id="executiveSummary"
+                class="executive-summary">
+
+                Enter your business data to generate a complete financial summary,
+                performance rating, risk analysis, and actionable recommendations.
+
+            </div>
+
+        </section>
+                <!-- ================================================= -->
+        <!-- SETTINGS DRAWER -->
+        <!-- ================================================= -->
+
+        <aside id="settingsDrawer" class="drawer">
+
+            <div class="drawer-header">
+
+                <h2>
+
+                    Settings
+
+                </h2>
+
+                <button id="closeSettings">
+
+                    <i data-lucide="x"></i>
+
+                </button>
+
+            </div>
+
+            <div class="drawer-content">
+
+                <div class="setting-group">
+
+                    <label>
+
+                        Theme
+
+                    </label>
+
+                    <select id="themeSelector">
+
+                        <option value="light">
+
+                            Light
+
+                        </option>
+
+                        <option value="dark">
+
+                            Dark
+
+                        </option>
+
+                        <option value="system">
+
+                            System
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="setting-group">
+
+                    <label>
+
+                        Currency
+
+                    </label>
+
+                    <select id="currencySelector">
+
+                        <option>
+
+                            INR ₹
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="setting-group">
+
+                    <label>
+
+                        Auto Save
+
+                    </label>
+
+                    <input
+                        id="autoSave"
+                        type="checkbox"
+                        checked>
+
+                </div>
+
+                <div class="setting-group">
+
+                    <label>
+
+                        Animation Effects
+
+                    </label>
+
+                    <input
+                        id="animations"
+                        type="checkbox"
+                        checked>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- ================================================= -->
+        <!-- EXPORT MODAL -->
+        <!-- ================================================= -->
+
+        <div
+            id="exportModal"
+            class="modal hidden">
+
+            <div class="modal-card">
+
+                <div class="modal-header">
+
+                    <h2>
+
+                        Export Report
+
+                    </h2>
+
+                    <button id="closeExport">
+
+                        <i data-lucide="x"></i>
+
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <button
+                        id="downloadPdf"
+                        class="export-button">
+
+                        <i data-lucide="file-text"></i>
+
+                        Export PDF
+
+                    </button>
+
+                    <button
+                        id="downloadExcel"
+                        class="export-button">
+
+                        <i data-lucide="sheet"></i>
+
+                        Export Excel
+
+                    </button>
+
+                    <button
+                        id="printReport"
+                        class="export-button">
+
+                        <i data-lucide="printer"></i>
+
+                        Print Report
+
+                    </button>
+
+                    <button
+                        id="copySummary"
+                        class="export-button">
+
+                        <i data-lucide="clipboard"></i>
+
+                        Copy Executive Summary
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================================================= -->
+        <!-- TOAST NOTIFICATIONS -->
+        <!-- ================================================= -->
+
+        <div id="toastContainer">
+
+            <div
+                id="toast"
+                class="toast hidden">
+
+                <div class="toast-icon">
+
+                    <i data-lucide="check-circle"></i>
+
+                </div>
+
+                <div class="toast-content">
+
+                    <h4 id="toastTitle">
+
+                        Success
+
+                    </h4>
+
+                    <p id="toastMessage">
+
+                        Operation completed.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================================================= -->
+        <!-- LOADING OVERLAY -->
+        <!-- ================================================= -->
+
+        <div
+            id="loadingOverlay"
+            class="loading-overlay hidden">
+
+            <div class="loader-card">
+
+                <div class="spinner"></div>
+
+                <h3>
+
+                    Calculating...
+
+                </h3>
+
+                <p>
+
+                    Generating financial insights
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================================================= -->
+        <!-- WELCOME CARD -->
+        <!-- ================================================= -->
+
+        <section
+            id="welcomeCard"
+            class="welcome-card">
+
+            <div class="welcome-content">
+
+                <div class="welcome-icon">
+
+                    <i data-lucide="sparkles"></i>
+
+                </div>
+
+                <h2>
+
+                    Welcome to Retail ROI Analytics
+
+                </h2>
+
+                <p>
+
+                    Enter your business data to receive a complete
+                    financial analysis, AI recommendations,
+                    growth opportunities and profitability insights.
+
+                </p>
+
+                <button
+                    id="startAnalysis"
+                    class="primary-button">
+
+                    Start Analysis
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================================= -->
+        <!-- KEYBOARD SHORTCUTS -->
+        <!-- ================================================= -->
+
+        <dialog id="shortcutDialog">
+
+            <div class="dialog-header">
+
+                <h2>
+
+                    Keyboard Shortcuts
+
+                </h2>
+
+            </div>
+
+            <table class="shortcut-table">
+
+                <tr>
+
+                    <td>
+
+                        Ctrl + S
+
+                    </td>
+
+                    <td>
+
+                        Save
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        Ctrl + P
+
+                    </td>
+
+                    <td>
+
+                        Print Report
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        Ctrl + E
+
+                    </td>
+
+                    <td>
+
+                        Export
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        Ctrl + R
+
+                    </td>
+
+                    <td>
+
+                        Reset Calculator
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>
+
+                        Ctrl + D
+
+                    </td>
+
+                    <td>
+
+                        Toggle Dark Mode
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </dialog>
+
+
+
+        <!-- ================================================= -->
+        <!-- COMMAND PALETTE -->
+        <!-- ================================================= -->
+
+        <dialog id="commandPalette">
+
+            <div class="command-search">
+
+                <input
+                    id="commandInput"
+                    type="text"
+                    placeholder="Search commands...">
+
+            </div>
+
+            <div id="commandResults">
+
+            </div>
+
+        </dialog>
+
+
+
+        <!-- ================================================= -->
+        <!-- FLOATING ACTION BUTTON -->
+        <!-- ================================================= -->
+
+        <button
+            id="fabButton"
+            class="fab">
+
+            <i data-lucide="plus"></i>
+
+        </button>
+
+
+
+        <!-- ================================================= -->
+        <!-- AUTO SAVE STATUS -->
+        <!-- ================================================= -->
+
+        <div
+            id="autosaveIndicator"
+            class="autosave">
+
+            <i data-lucide="cloud-check"></i>
+
+            Saved
+
+        </div>
+                <!-- ========================================= -->
+        <!-- Hidden Templates -->
+        <!-- ========================================= -->
+
+        <!-- Employee Row Template -->
+
+        <template id="employeeRowTemplate">
+
+            <div class="employee-row">
+
+                <input
+                    class="employee-name"
+                    type="text"
+                    placeholder="Employee Name">
+
+                <input
+                    class="employee-salary"
+                    type="number"
+                    placeholder="Salary">
+
+                <button
+                    class="remove-employee">
+
+                    <i data-lucide="trash-2"></i>
+
+                </button>
+
+            </div>
+
+        </template>
+
+
+
+        <!-- Insight Card Template -->
+
+        <template id="insightTemplate">
+
+            <div class="insight-item">
+
+                <div class="insight-icon">
+
+                    <i data-lucide="sparkles"></i>
+
+                </div>
+
+                <div class="insight-content">
+
+                    <h4></h4>
+
+                    <p></p>
+
+                </div>
+
+            </div>
+
+        </template>
+
+
+
+        <!-- Recommendation Template -->
+
+        <template id="recommendationTemplate">
+
+            <article class="recommendation-card">
+
+                <div class="recommendation-header">
+
+                    <i data-lucide="badge-check"></i>
+
+                    <h4></h4>
+
+                </div>
+
+                <p></p>
+
+            </article>
+
+        </template>
+
+    </main>
+
+    <!-- ========================================= -->
+    <!-- Footer -->
+    <!-- ========================================= -->
+
+    <footer class="app-footer">
+
+        <div class="footer-left">
+
+            <strong>
+
+                Retail ROI Analytics v2.0
+
+            </strong>
+
+            <span>
+
+                Smart Retail Business Intelligence Dashboard
+
+            </span>
+
+        </div>
+
+        <div class="footer-right">
+
+            <span id="lastSaved">
+
+                Last Saved : --
+
+            </span>
+
+            <span>
+
+                |
+
+            </span>
+
+            <span id="appVersion">
+
+                Version 2.0.0
+
+            </span>
+
+        </div>
+
+    </footer>
+
+</div>
+
+<!-- ========================================= -->
+<!-- JavaScript Modules -->
+<!-- ========================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script type="module" src="js/constants.js"></script>
+
+<script type="module" src="js/state.js"></script>
+
+<script type="module" src="js/utils.js"></script>
+
+<script type="module" src="js/calculator.js"></script>
+
+<script type="module" src="js/charts.js"></script>
+
+<script type="module" src="js/storage.js"></script>
+
+<script type="module" src="js/insights.js"></script>
+
+<script type="module" src="js/ui.js"></script>
+
+<script type="module" src="js/events.js"></script>
+
+<script type="module" src="js/app.js"></script>
+
+<script>
+
+    lucide.createIcons();
+
+</script>
+
+</body>
+
+</html>
