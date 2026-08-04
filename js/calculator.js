@@ -456,19 +456,6 @@ export function calculateMarginEfficiency(
    Retail ROI Analytics v2
    Calculation Engine - Part 2
 ========================================================== */
-
-import {
-    FINANCIAL,
-    BENCHMARKS
-} from "./constants.js";
-
-import {
-    parseNumber,
-    round,
-    divide,
-    percentage
-} from "./utils.js";
-
 /* ==========================================================
    Break Even Revenue
 ========================================================== */
@@ -993,51 +980,6 @@ export function calculateScenarios(
    Retail ROI Analytics v2
    Calculation Engine - Part 4
 ========================================================== */
-
-import {
-    calculateRevenue,
-    calculateFixedExpenses,
-    calculateVariableExpenses,
-    calculateTotalExpenses,
-    calculateMarginAmount,
-    calculateProfit,
-    calculateExpenseRatio,
-    calculateProfitRatio,
-    calculateRentRatio,
-    calculateSalaryRatio,
-    calculateMarginEfficiency
-} from "./calculator.js";
-
-import {
-    calculateBreakEven,
-    calculateRequiredRevenue,
-    calculateRequiredMargin,
-    calculateDailyRevenue,
-    calculateDailyProfit,
-    calculateDailyBreakEven,
-    calculateTargetAchievement,
-    calculateRevenueAchievement,
-    calculateMarginAchievement,
-    calculatePrivateLabelGain,
-    calculateCrossSellGain,
-    calculateExpenseSaving,
-    calculateScenarios
-} from "./calculator.js";
-
-import {
-    calculateHealthScore,
-    calculateROI,
-    calculateProfitScore,
-    calculateExpenseScore,
-    calculateMarginScore,
-    calculateGrade,
-    calculateBusinessStatus,
-    buildKPIs,
-    buildDashboardMetrics,
-    buildExecutiveSummary,
-    buildRecommendations
-} from "./calculator.js";
-
 /* ==========================================================
    Master Calculation
 ========================================================== */
