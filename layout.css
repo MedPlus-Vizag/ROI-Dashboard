@@ -1,0 +1,557 @@
+/* ==========================================================
+   Retail ROI Analytics v2
+   Layout System
+==========================================================*/
+
+/*==========================================================
+App Container
+==========================================================*/
+
+.app{
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    background:var(--background);
+
+}
+
+#app{
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:100vh;
+
+}
+
+
+/*==========================================================
+Header
+==========================================================*/
+
+.top-header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:24px;
+
+    padding:20px 32px;
+
+    background:var(--glass-bg);
+
+    backdrop-filter:blur(var(--glass-blur));
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.header-left{
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+.header-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    flex-wrap:wrap;
+
+}
+
+
+/*==========================================================
+Brand
+==========================================================*/
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.brand-icon{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fff;
+
+    background:var(--gradient-primary);
+
+    box-shadow:var(--shadow-md);
+
+}
+
+.brand h1{
+
+    font-size:1.55rem;
+
+    font-weight:800;
+
+}
+
+.brand p{
+
+    margin-top:3px;
+
+    color:var(--text-secondary);
+
+    font-size:.85rem;
+
+}
+
+
+/*==========================================================
+Dashboard Wrapper
+==========================================================*/
+
+.dashboard{
+
+    flex:1;
+
+    width:100%;
+
+    max-width:1700px;
+
+    margin:auto;
+
+    padding:28px;
+
+}
+
+
+/*==========================================================
+KPI Grid
+==========================================================*/
+
+.kpi-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(6,1fr);
+
+    gap:22px;
+
+    margin-bottom:28px;
+
+}
+
+
+/*==========================================================
+Main Grid
+==========================================================*/
+
+.content-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+    330px
+
+    1fr
+
+    380px;
+
+    gap:24px;
+
+    align-items:start;
+
+}
+
+
+/*==========================================================
+Panels
+==========================================================*/
+
+.left-panel,
+
+.center-panel,
+
+.right-panel{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+
+/*==========================================================
+Analytics Section
+==========================================================*/
+
+.analytics-section{
+
+    display:grid;
+
+    grid-template-columns:
+
+    2fr
+
+    1fr;
+
+    gap:24px;
+
+    margin-top:30px;
+
+}
+
+
+/*==========================================================
+Scenario Grid
+==========================================================*/
+
+.scenario-section{
+
+    margin-top:30px;
+
+}
+
+.scenario-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:22px;
+
+}
+
+
+/*==========================================================
+Opportunity Grid
+==========================================================*/
+
+.opportunity-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:22px;
+
+    margin-top:30px;
+
+}
+
+
+/*==========================================================
+Advisor Grid
+==========================================================*/
+
+.advisor-section{
+
+    margin-top:34px;
+
+}
+
+.advisor-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:22px;
+
+}
+
+
+/*==========================================================
+Executive Scoreboard
+==========================================================*/
+
+.scoreboard-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+}
+
+
+/*==========================================================
+Daily Targets
+==========================================================*/
+
+.daily-target-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+}
+
+
+/*==========================================================
+Planner Grid
+==========================================================*/
+
+.planner-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:16px;
+
+    margin-top:22px;
+
+}
+
+
+/*==========================================================
+Metric Grid
+==========================================================*/
+
+.metric-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:16px;
+
+}
+
+
+/*==========================================================
+Two Column Inputs
+==========================================================*/
+
+.two-column{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+}
+
+
+/*==========================================================
+Section Heading
+==========================================================*/
+
+.section-heading{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.section-heading h2{
+
+    font-size:1.35rem;
+
+    font-weight:700;
+
+}
+
+.section-heading p{
+
+    color:var(--text-secondary);
+
+    margin-top:4px;
+
+}
+
+
+/*==========================================================
+Chart Wrapper
+==========================================================*/
+
+.chart-wrapper{
+
+    width:100%;
+
+    height:360px;
+
+    position:relative;
+
+}
+
+.chart-wrapper.donut{
+
+    height:320px;
+
+}
+
+
+/*==========================================================
+Footer
+==========================================================*/
+
+.app-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 30px;
+
+    margin-top:40px;
+
+    border-top:1px solid var(--border);
+
+    background:var(--surface);
+
+}
+
+.footer-left{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+.footer-left strong{
+
+    font-size:.95rem;
+
+}
+
+.footer-left span{
+
+    font-size:.8rem;
+
+    color:var(--text-secondary);
+
+}
+
+.footer-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:var(--text-secondary);
+
+    font-size:.85rem;
+
+}
+
+
+/*==========================================================
+Utility Containers
+==========================================================*/
+
+.flex{
+
+    display:flex;
+
+}
+
+.grid{
+
+    display:grid;
+
+}
+
+.hidden{
+
+    display:none !important;
+
+}
+
+.w-full{
+
+    width:100%;
+
+}
+
+.text-center{
+
+    text-align:center;
+
+}
+
+.items-center{
+
+    align-items:center;
+
+}
+
+.justify-between{
+
+    justify-content:space-between;
+
+}
+
+.gap-8{
+
+    gap:8px;
+
+}
+
+.gap-16{
+
+    gap:16px;
+
+}
+
+.mt-24{
+
+    margin-top:24px;
+
+}
+
+.mb-24{
+
+    margin-bottom:24px;
+
+}
