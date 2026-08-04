@@ -983,7 +983,54 @@ export function calculateScenarios(
 /* ==========================================================
    Master Calculation
 ========================================================== */
+function calculateHealthScore() {
+    return 75;
+}
 
+function calculateROI(profit, expense) {
+    if (expense <= 0) return 0;
+    return Math.round((profit / expense) * 100);
+}
+
+function calculateProfitScore() {
+    return 75;
+}
+
+function calculateExpenseScore() {
+    return 75;
+}
+
+function calculateMarginScore() {
+    return 75;
+}
+
+function calculateGrade(score) {
+    if (score >= 90) return "A+";
+    if (score >= 80) return "A";
+    if (score >= 70) return "B";
+    if (score >= 60) return "C";
+    return "D";
+}
+
+function calculateBusinessStatus() {
+    return "Healthy";
+}
+
+function buildKPIs(data) {
+    return data;
+}
+
+function buildDashboardMetrics(data) {
+    return data;
+}
+
+function buildExecutiveSummary(data) {
+    return data;
+}
+
+function buildRecommendations() {
+    return [];
+}
 export function calculateAll(inputs){
 
     /* -----------------------------
