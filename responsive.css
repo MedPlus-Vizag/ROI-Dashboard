@@ -1,0 +1,648 @@
+/* ==========================================================
+   Retail ROI Analytics v2
+   Responsive Layout
+==========================================================*/
+
+
+/*==========================================================
+1600px
+==========================================================*/
+
+@media (max-width:1600px){
+
+.dashboard{
+
+    max-width:1400px;
+
+}
+
+.content-grid{
+
+    grid-template-columns:
+
+    300px
+
+    1fr
+
+    340px;
+
+}
+
+}
+
+
+/*==========================================================
+1400px
+==========================================================*/
+
+@media (max-width:1400px){
+
+.kpi-grid{
+
+    grid-template-columns:repeat(3,1fr);
+
+}
+
+.content-grid{
+
+    grid-template-columns:
+
+    280px
+
+    1fr;
+
+}
+
+.right-panel{
+
+    grid-column:1 / -1;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:24px;
+
+}
+
+.analytics-section{
+
+    grid-template-columns:1fr;
+
+}
+
+.chart-card.large{
+
+    order:1;
+
+}
+
+}
+
+
+/*==========================================================
+1200px
+==========================================================*/
+
+@media (max-width:1200px){
+
+.dashboard{
+
+    padding:20px;
+
+}
+
+.content-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.left-panel,
+
+.center-panel,
+
+.right-panel{
+
+    width:100%;
+
+}
+
+.right-panel{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.scenario-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.opportunity-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.scoreboard-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.daily-target-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.advisor-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+
+/*==========================================================
+992px
+==========================================================*/
+
+@media (max-width:992px){
+
+.top-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+}
+
+.header-right{
+
+    width:100%;
+
+    justify-content:space-between;
+
+}
+
+.brand{
+
+    width:100%;
+
+}
+
+.kpi-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.metric-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.planner-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.two-column{
+
+    grid-template-columns:1fr;
+
+}
+
+.right-panel{
+
+    display:flex;
+
+}
+
+.app-footer{
+
+    flex-direction:column;
+
+    gap:12px;
+
+    text-align:center;
+
+}
+
+}
+
+
+/*==========================================================
+768px
+==========================================================*/
+
+@media (max-width:768px){
+
+.dashboard{
+
+    padding:16px;
+
+}
+
+.top-header{
+
+    padding:18px;
+
+}
+
+.brand h1{
+
+    font-size:1.2rem;
+
+}
+
+.brand p{
+
+    display:none;
+
+}
+
+.header-right{
+
+    gap:10px;
+
+}
+
+.primary-button span,
+
+.secondary-button span{
+
+    display:none;
+
+}
+
+.icon-button{
+
+    width:42px;
+
+    height:42px;
+
+}
+
+.kpi-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.dashboard-card{
+
+    padding:18px;
+
+}
+
+.chart-wrapper{
+
+    height:300px;
+
+}
+
+.chart-wrapper.donut{
+
+    height:260px;
+
+}
+
+.health-circle{
+
+    width:150px;
+
+    height:150px;
+
+}
+
+.health-circle svg{
+
+    width:150px;
+
+    height:150px;
+
+}
+
+.summary-item{
+
+    font-size:.92rem;
+
+}
+
+.employee-row{
+
+    grid-template-columns:1fr;
+
+}
+
+.input-wrapper{
+
+    padding:10px 12px;
+
+}
+
+.progress-header{
+
+    font-size:.85rem;
+
+}
+
+.timeline-item{
+
+    gap:12px;
+
+}
+
+.welcome-content{
+
+    padding:30px;
+
+}
+
+.modal-card{
+
+    width:95%;
+
+}
+
+.drawer{
+
+    width:100%;
+
+}
+
+}
+
+
+/*==========================================================
+600px
+==========================================================*/
+
+@media (max-width:600px){
+
+.brand-icon{
+
+    width:48px;
+
+    height:48px;
+
+}
+
+.brand h1{
+
+    font-size:1.05rem;
+
+}
+
+.card-title h3{
+
+    font-size:1rem;
+
+}
+
+.kpi-card h2{
+
+    font-size:1.4rem;
+
+}
+
+.metric-card strong{
+
+    font-size:1.2rem;
+
+}
+
+.daily-card strong{
+
+    font-size:1.2rem;
+
+}
+
+.score strong{
+
+    font-size:1.4rem;
+
+}
+
+.health-value h2{
+
+    font-size:2rem;
+
+}
+
+.scenario-card h2{
+
+    font-size:1.5rem;
+
+}
+
+.opportunity h2{
+
+    font-size:1.6rem;
+
+}
+
+.executive-summary{
+
+    font-size:.9rem;
+
+}
+
+.section-heading{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:14px;
+
+}
+
+}
+
+
+/*==========================================================
+480px
+==========================================================*/
+
+@media (max-width:480px){
+
+.dashboard{
+
+    padding:12px;
+
+}
+
+.top-header{
+
+    padding:14px;
+
+}
+
+.segment-control{
+
+    width:100%;
+
+}
+
+.segment-btn{
+
+    flex:1;
+
+}
+
+.header-right{
+
+    flex-wrap:wrap;
+
+}
+
+.primary-button,
+
+.secondary-button{
+
+    width:100%;
+
+}
+
+.icon-button{
+
+    width:40px;
+
+    height:40px;
+
+}
+
+.card-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+}
+
+.card-footer{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:8px;
+
+}
+
+.metric-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.scoreboard-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.daily-target-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.scenario-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.health-circle{
+
+    width:130px;
+
+    height:130px;
+
+}
+
+.health-circle svg{
+
+    width:130px;
+
+    height:130px;
+
+}
+
+.chart-wrapper{
+
+    height:240px;
+
+}
+
+.chart-wrapper.donut{
+
+    height:220px;
+
+}
+
+.fab{
+
+    right:16px;
+
+    bottom:16px;
+
+}
+
+}
+
+
+/*==========================================================
+360px
+==========================================================*/
+
+@media (max-width:360px){
+
+.dashboard{
+
+    padding:10px;
+
+}
+
+.dashboard-card{
+
+    padding:14px;
+
+}
+
+.brand-icon{
+
+    display:none;
+
+}
+
+.header-right{
+
+    gap:8px;
+
+}
+
+.input-wrapper{
+
+    font-size:.9rem;
+
+}
+
+.kpi-card{
+
+    padding:16px;
+
+}
+
+.card-title{
+
+    gap:8px;
+
+}
+
+.health-value h2{
+
+    font-size:1.6rem;
+
+}
+
+.welcome-content{
+
+    padding:24px;
+
+}
+
+}
