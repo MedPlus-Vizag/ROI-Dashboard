@@ -1,0 +1,581 @@
+/* ==========================================================
+   Retail ROI Analytics v2
+   Animation Library
+==========================================================*/
+
+/* ==========================================
+   Global Transition
+========================================== */
+
+*{
+
+    transition:
+        background-color .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+/* ==========================================
+   Fade In
+========================================== */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+.fade-in{
+
+    animation:fadeIn .45s ease forwards;
+
+}
+
+
+/* ==========================================
+   Slide Up
+========================================== */
+
+@keyframes slideUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.slide-up{
+
+    animation:slideUp .45s ease;
+
+}
+
+
+/* ==========================================
+   Slide Left
+========================================== */
+
+@keyframes slideLeft{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+.slide-left{
+
+    animation:slideLeft .45s ease;
+
+}
+
+
+/* ==========================================
+   Slide Right
+========================================== */
+
+@keyframes slideRight{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(-30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+.slide-right{
+
+    animation:slideRight .45s ease;
+
+}
+
+
+/* ==========================================
+   Scale In
+========================================== */
+
+@keyframes scaleIn{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+.scale-in{
+
+    animation:scaleIn .35s ease;
+
+}
+
+
+/* ==========================================
+   Floating
+========================================== */
+
+@keyframes floating{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-5px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.float{
+
+    animation:floating 3s infinite ease-in-out;
+
+}
+
+
+/* ==========================================
+   Pulse
+========================================== */
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.03);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+.pulse{
+
+    animation:pulse 2s infinite;
+
+}
+
+
+/* ==========================================
+   Glow
+========================================== */
+
+@keyframes glow{
+
+    0%{
+
+        box-shadow:0 0 0 rgba(0,135,83,.1);
+
+    }
+
+    50%{
+
+        box-shadow:0 0 30px rgba(0,135,83,.25);
+
+    }
+
+    100%{
+
+        box-shadow:0 0 0 rgba(0,135,83,.1);
+
+    }
+
+}
+
+.glow{
+
+    animation:glow 2.5s infinite;
+
+}
+
+
+/* ==========================================
+   KPI Counter Animation
+========================================== */
+
+.kpi-card{
+
+    animation:slideUp .45s ease;
+
+}
+
+.kpi-card:nth-child(1){
+
+    animation-delay:.05s;
+
+}
+
+.kpi-card:nth-child(2){
+
+    animation-delay:.10s;
+
+}
+
+.kpi-card:nth-child(3){
+
+    animation-delay:.15s;
+
+}
+
+.kpi-card:nth-child(4){
+
+    animation-delay:.20s;
+
+}
+
+.kpi-card:nth-child(5){
+
+    animation-delay:.25s;
+
+}
+
+.kpi-card:nth-child(6){
+
+    animation-delay:.30s;
+
+}
+
+
+/* ==========================================
+   Dashboard Cards
+========================================== */
+
+.dashboard-card{
+
+    animation:fadeIn .5s ease;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+/* ==========================================
+   Progress Bar
+========================================== */
+
+.progress-fill{
+
+    transition:
+
+        width .8s ease,
+
+        background .3s ease;
+
+}
+
+
+/* ==========================================
+   Buttons
+========================================== */
+
+.primary-button:hover,
+
+.secondary-button:hover,
+
+.outline-button:hover,
+
+.icon-button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.primary-button:active,
+
+.secondary-button:active{
+
+    transform:scale(.97);
+
+}
+
+
+/* ==========================================
+   KPI Hover
+========================================== */
+
+.kpi-card:hover .kpi-icon{
+
+    transform:rotate(8deg) scale(1.08);
+
+}
+
+
+/* ==========================================
+   Inputs
+========================================== */
+
+.input-wrapper{
+
+    transition:
+
+        border-color .2s ease,
+
+        box-shadow .2s ease,
+
+        transform .2s ease;
+
+}
+
+.input-wrapper:hover{
+
+    transform:translateY(-1px);
+
+}
+
+
+/* ==========================================
+   Advisor Cards
+========================================== */
+
+.advisor-card{
+
+    transition:
+
+        transform .3s,
+
+        box-shadow .3s;
+
+}
+
+.advisor-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+
+/* ==========================================
+   Scenario Cards
+========================================== */
+
+.scenario-card{
+
+    transition:
+
+        transform .25s,
+
+        box-shadow .25s;
+
+}
+
+.scenario-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+
+/* ==========================================
+   Loading Spinner
+========================================== */
+
+.spinner{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    border:5px solid rgba(0,135,83,.15);
+
+    border-top-color:var(--primary);
+
+    animation:spin .8s linear infinite;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+/* ==========================================
+   Toast
+========================================== */
+
+.toast{
+
+    animation:slideLeft .35s ease;
+
+}
+
+
+/* ==========================================
+   Drawer
+========================================== */
+
+.drawer{
+
+    animation:slideRight .35s ease;
+
+}
+
+
+/* ==========================================
+   Modal
+========================================== */
+
+.modal-card{
+
+    animation:scaleIn .3s ease;
+
+}
+
+
+/* ==========================================
+   Welcome Screen
+========================================== */
+
+.welcome-card{
+
+    animation:fadeIn .35s ease;
+
+}
+
+.welcome-content{
+
+    animation:scaleIn .45s ease;
+
+}
+
+
+/* ==========================================
+   Health Gauge
+========================================== */
+
+.health-progress{
+
+    transition:
+
+        stroke-dashoffset .9s ease;
+
+}
+
+
+/* ==========================================
+   Charts
+========================================== */
+
+canvas{
+
+    animation:fadeIn .6s ease;
+
+}
+
+
+/* ==========================================
+   FAB
+========================================== */
+
+.fab{
+
+    animation:floating 4s infinite ease-in-out;
+
+}
+
+
+/* ==========================================
+   Reduced Motion
+========================================== */
+
+@media (prefers-reduced-motion:reduce){
+
+    *{
+
+        animation:none !important;
+
+        transition:none !important;
+
+    }
+
+}
